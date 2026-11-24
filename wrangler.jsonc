@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "openads",
+  "main": "./src/worker.ts",
+  "compatibility_date": "2026-11-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [],
+  "assets": { "binding": "ASSETS", "run_worker_first": true },
+  "observability": { "enabled": false },
+  // Workspaces, memberships, encrypted connections, selected accounts, OAuth state,
+  // and the instance setup of Google Ads and Meta Ads.
+  // The operator replaces database_id with the id of the D1 database they create
+  // (placeholder below; local development and dry-runs do not need a real one).
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "openads",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Template only: copy to a private deployment config and fill in (see
+  // docs/SELF_HOSTING_CLOUDFLARE.md). Optional, not listed here so an empty
+  // template value never overwrites them: GOOGLE_OAUTH_CLIENT_ID and META_APP_ID
+  // (otherwise entered in the in-app setup wizards), GOOGLE_API_VERSION and
+  // META_API_VERSION (default to the versions pinned in src/lib/config.ts and
+  // src/lib/meta-ads/config.ts), META_CONVERSION_ACTION_TYPE (otherwise chosen
+  // on the Sources page; default purchase).
+  "vars": {
+    "ACCESS_TEAM_HOSTNAME": "",
+    "ACCESS_AUDIENCE": "",
+    "ACCESS_ALLOWED_EMAILS": "",
+    "PUBLIC_ORIGIN": "",
+    "OPENADS_ADMIN_EMAILS": ""
+  }
+}

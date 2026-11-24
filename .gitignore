@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.tanstack/
+.astro/
+.pnpm-store/
+.env
+.env.*
+!deploy/.env.cloudflare.example
+.dev.vars
+.dev.vars.*
+.wrangler/
+*.log
+.DS_Store
+wrangler.private.jsonc
+.openads/
+# Database exports and backups (e.g. `wrangler d1 export`); migrations stay tracked.
+*.sql
+*.sql.gz
+*.sqlite
+*.sqlite3
+!/migrations/*.sql

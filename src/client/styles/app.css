@@ -1,0 +1,265 @@
+/* Design system ported from OpenSEO (MIT, © Ben Senescu): src/client/styles/app.css.
+   OpenADS changes: theme names, a green primary (primary CTAs are green), and only
+   the rules the dashboard uses. See THIRD_PARTY_NOTICES.md. */
+@import "tailwindcss" source("../..");
+@import "tw-animate-css";
+@import "sonner/dist/styles.css";
+
+/* shadcn components here are built on Base UI. The shadcn variables below are
+   the source of truth for theme colors. */
+
+@custom-variant dark (&:where([data-theme=openads-dark], [data-theme=openads-dark] *));
+
+/* Custom variants from shadcn/tailwind.css (MIT, © shadcn), vendored so the
+   build does not depend on the shadcn CLI package. */
+@custom-variant data-open {
+  &:where([data-state="open"]),
+  &:where([data-open]:not([data-open="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-closed {
+  &:where([data-state="closed"]),
+  &:where([data-closed]:not([data-closed="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-checked {
+  &:where([data-state="checked"]),
+  &:where([data-checked]:not([data-checked="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-unchecked {
+  &:where([data-state="unchecked"]),
+  &:where([data-unchecked]:not([data-unchecked="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-selected {
+  &:where([data-selected="true"]) {
+    @slot;
+  }
+}
+@custom-variant data-disabled {
+  &:where([data-disabled="true"]),
+  &:where([data-disabled]:not([data-disabled="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-active {
+  &:where([data-state="active"]),
+  &:where([data-active]:not([data-active="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-horizontal {
+  &:where([data-orientation="horizontal"]) {
+    @slot;
+  }
+}
+@custom-variant data-vertical {
+  &:where([data-orientation="vertical"]) {
+    @slot;
+  }
+}
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@theme {
+  --container-8xl: 88rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-google: var(--google);
+  --color-meta: var(--meta);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 3);
+  --radius-4xl: calc(var(--radius) * 4);
+}
+
+:where(:root),
+[data-theme="openads"] {
+  color-scheme: light;
+  --radius: 0.5rem;
+  --background: oklch(95.5% 0 0);
+  --foreground: oklch(20% 0 0);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(20% 0 0);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(20% 0 0);
+  --primary: oklch(52% 0.14 152);
+  --chart-1: oklch(52% 0.14 152);
+  --chart-2: oklch(58% 0.15 255);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(97% 0 0);
+  --secondary-foreground: oklch(20% 0 0);
+  --muted: oklch(97% 0 0);
+  --muted-foreground: oklch(20% 0 0 / 60%);
+  --accent: oklch(97% 0 0);
+  --accent-foreground: oklch(20% 0 0);
+  --destructive: oklch(58% 0.2 25);
+  --success: oklch(55% 0.15 150);
+  --success-foreground: oklch(100% 0 0);
+  --warning: oklch(80% 0.15 80);
+  --warning-foreground: oklch(38% 0.08 70);
+  --info: oklch(58% 0.14 240);
+  --info-foreground: oklch(100% 0 0);
+  --border: oklch(92% 0 0);
+  --input: oklch(82% 0 0);
+  --ring: oklch(52% 0.14 152);
+  --sidebar: oklch(91% 0 0);
+  --sidebar-foreground: oklch(20% 0 0);
+  --sidebar-primary: oklch(52% 0.14 152);
+  --sidebar-primary-foreground: oklch(100% 0 0);
+  --sidebar-accent: oklch(20% 0 0 / 8%);
+  --sidebar-accent-foreground: oklch(20% 0 0);
+  --sidebar-border: oklch(86% 0 0);
+  --sidebar-ring: oklch(52% 0.14 152);
+  --google: oklch(58% 0.17 255);
+  --meta: oklch(52% 0.2 290);
+}
+
+[data-theme="openads-dark"] {
+  color-scheme: dark;
+  --background: oklch(18% 0 0);
+  --foreground: oklch(92% 0 0);
+  --card: oklch(23% 0 0);
+  --card-foreground: oklch(92% 0 0);
+  --popover: oklch(25% 0 0);
+  --popover-foreground: oklch(92% 0 0);
+  --primary: oklch(72% 0.16 152);
+  --chart-1: oklch(72% 0.16 152);
+  --chart-2: oklch(74% 0.13 255);
+  --primary-foreground: oklch(18% 0.03 152);
+  --secondary: oklch(28% 0 0);
+  --secondary-foreground: oklch(92% 0 0);
+  --muted: oklch(18% 0 0);
+  --muted-foreground: oklch(92% 0 0 / 60%);
+  --accent: oklch(28% 0 0);
+  --accent-foreground: oklch(92% 0 0);
+  --destructive: oklch(68% 0.19 25);
+  --success: oklch(72% 0.16 150);
+  --success-foreground: oklch(18% 0.03 150);
+  --warning: oklch(80% 0.15 80);
+  --warning-foreground: oklch(25% 0.05 80);
+  --info: oklch(72% 0.13 235);
+  --info-foreground: oklch(18% 0 0);
+  --border: oklch(30% 0 0);
+  --input: oklch(40% 0 0);
+  --ring: oklch(72% 0.16 152);
+  --sidebar: oklch(24% 0 0);
+  --sidebar-foreground: oklch(92% 0 0);
+  --sidebar-primary: oklch(72% 0.16 152);
+  --sidebar-primary-foreground: oklch(18% 0.03 152);
+  --sidebar-accent: oklch(100% 0 0 / 8%);
+  --sidebar-accent-foreground: oklch(92% 0 0);
+  --sidebar-border: oklch(31% 0 0);
+  --sidebar-ring: oklch(72% 0.16 152);
+  --google: oklch(72% 0.14 255);
+  --meta: oklch(72% 0.14 290);
+}
+
+html,
+body {
+  @apply m-0 bg-background text-foreground;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Thin scrollbars in the muted text color, in both themes. */
+:root {
+  scrollbar-color: color-mix(in oklch, currentColor 35%, transparent)
+    transparent;
+}
+
+/* Prevent Safari mobile from zooming on input focus (requires 16px minimum).
+   shadcn controls (with data-slot) are 16px below md through their own utilities. */
+input:not([data-slot]),
+textarea:not([data-slot]),
+select:not([data-slot]) {
+  @apply text-base;
+}
+
+/* The native date picker icon follows the theme. */
+[data-theme="openads-dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0.5rem) + 0.5rem);
+  }
+}
+
+/* Tailwind v4 no longer sets cursor: pointer on buttons; restore it globally. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"],
+  [role="menuitem"],
+  [role="option"],
+  [role="radio"],
+  [role="checkbox"],
+  [role="switch"],
+  a[href],
+  label[for],
+  summary,
+  select,
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="file"] {
+    cursor: pointer;
+  }
+  button:disabled,
+  [aria-disabled="true"],
+  [data-disabled] {
+    cursor: not-allowed;
+  }
+}
